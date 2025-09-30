@@ -8,7 +8,10 @@
 </head>
 <body>
 
-<div id="cards" class="cards"></div>
+<div id="cards" class="cards">
+	<div id="deck" class="deck card-shaped" ondragover="deckAccept(event)" ondragleave="deckCancel(event)" ondrop="shuffleIn(event)" onclick="draw()"></div>
+</div>
+
 
 <script src="questions.js"></script>
 <script src="script.js"></script>

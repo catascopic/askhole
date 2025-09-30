@@ -1,18 +1,71 @@
+'use strict';
+
+const DECK = document.getElementById('deck');
+let CONTAINER = document.getElementById('cards');
+
 function shuffle(array) {
-  let currentIndex = array.length;
-  while (currentIndex != 0) {
-    let randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  let i = array.length;
+  while (i !== 0) {
+    let r = Math.floor(Math.random() * i);
+    i--;
+    [array[i], array[r]] = [array[r], array[i]];
   }
 }
 
-shuffle(QUESTIONS);
+var questions = [...QUESTIONS];
+shuffle(questions);
 
-let container = document.getElementById('cards');
-for (let i = 0; i < QUESTIONS.length; i++) {
+let draggingCard = null;
+
+function draw() {
+	if (questions.length === 0) {
+		return;
+	}
 	let card = document.createElement('div');
-	card.innerText = QUESTIONS[i];
-	card.className = 'card';
-	container.appendChild(card);
+	const questionText = questions.pop();
+	card.textContent = questionText;
+	card.className = 'card card-shaped';
+	card.draggable = true;
+	const cardData = {
+		element: card,
+		question: questionText,
+	};
+
+	card.addEventListener('dragstart', function() {
+		card.classList.add('dragging');
+		draggingCard = cardData;
+	});
+
+	card.addEventListener('dragend', function() {
+		card.classList.remove('dragging');
+		draggingCard = null;
+	});
+
+	card.addEventListener('dragover', function(e) {
+		e.preventDefault();
+		if (draggingCard && draggingCard.element !== card) {
+			let dragIndex = Array.prototype.indexOf.call(CONTAINER.children, draggingCard.element);
+			let targetIndex = Array.prototype.indexOf.call(CONTAINER.children, card);
+			CONTAINER.insertBefore(draggingCard.element, dragIndex >= targetIndex ? card : card.nextSibling);
+		}
+	});
+	
+	CONTAINER.insertBefore(card, DECK.nextSibling);
+}
+
+function deckAccept(e) {
+	e.preventDefault();
+	DECK.textContent = 'Shuffle in';
+}
+
+function deckCancel() {
+	DECK.textContent = '';
+}
+
+function shuffleIn() {
+	DECK.textContent = '';
+	draggingCard.element.remove();
+	questions.push(draggingCard.question);
+	let r = Math.floor(Math.random() * questions.length);
+    [questions[questions.length - 1], questions[r]] = [questions[r], questions.at(-1)];
 }

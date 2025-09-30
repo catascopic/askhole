@@ -1,19 +1,43 @@
 .cards {
-	display: flex;
+	display: inline-flex;
 	flex-wrap: wrap;
 	gap: 8px;
 }
 
+.card-shaped {
+	height: 270px;
+	width: 180px;
+	padding: 8px 4px;
+	box-sizing: border-box;
+	border-radius: 12px;
+	box-shadow: 5px 5px 5px rgb(0, 0, 0, .5);
+}
+
+.deck {
+	display: inline-block;
+	background-color: crimson;
+	color: white;
+	font-family: sans-serif;
+	font-size: 20pt;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
 .card {
-	height: 240px;
-	width: 160px;
-	padding: 8px 4px 0 4px;
 	background-color: #FAF9F6;
 	border: 8px solid #222222;
-	border-radius: 12px;
 	font-family: sans-serif;
+	font-size: 12pt;
 	font-weight: bold;
-	box-shadow: 5px 5px 5px rgb(0, 0, 0, .5);
+	user-select: none;
+	cursor: grab;
+}
+
+.dragging {
+	opacity: 0.5;
 }
 
 body {
