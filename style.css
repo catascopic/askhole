@@ -11,6 +11,7 @@
 	box-sizing: border-box;
 	border-radius: 12px;
 	box-shadow: 5px 5px 5px rgb(0, 0, 0, .5);
+	user-select: none;
 }
 
 .deck {
@@ -32,7 +33,6 @@
 	font-family: sans-serif;
 	font-size: 12pt;
 	font-weight: bold;
-	user-select: none;
 	cursor: grab;
 }
 

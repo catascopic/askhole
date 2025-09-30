@@ -1,7 +1,7 @@
 'use strict';
 
 const DECK = document.getElementById('deck');
-let CONTAINER = document.getElementById('cards');
+const CONTAINER = document.getElementById('cards');
 
 function shuffle(array) {
   let i = array.length;
@@ -16,6 +16,12 @@ var questions = [...QUESTIONS];
 shuffle(questions);
 
 let draggingCard = null;
+
+function updateDeck() {
+	DECK.innerHTML = `Cards: ${questions.length}`;
+}
+
+updateDeck();
 
 function draw() {
 	if (questions.length === 0) {
@@ -51,21 +57,23 @@ function draw() {
 	});
 	
 	CONTAINER.insertBefore(card, DECK.nextSibling);
+	updateDeck();
 }
 
 function deckAccept(e) {
 	e.preventDefault();
-	DECK.textContent = 'Shuffle in';
+	DECK.innerHTML = '↪ Shuffle';
 }
 
 function deckCancel() {
-	DECK.textContent = '';
+	updateDeck();
 }
 
 function shuffleIn() {
-	DECK.textContent = '';
+	// DECK.textContent = '';
 	draggingCard.element.remove();
 	questions.push(draggingCard.question);
 	let r = Math.floor(Math.random() * questions.length);
     [questions[questions.length - 1], questions[r]] = [questions[r], questions.at(-1)];
+	updateDeck();
 }
