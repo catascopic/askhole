@@ -1,0 +1,22 @@
+.cards {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.card {
+	height: 240px;
+	width: 160px;
+	padding: 8px 4px 0 4px;
+	background-color: #FAF9F6;
+	border: 8px solid #222222;
+	border-radius: 12px;
+	font-family: sans-serif;
+	font-weight: bold;
+	box-shadow: 5px 5px 5px rgb(0, 0, 0, .5);
+}
+
+body {
+	background-color: #cccccc;
+	background-image: url("./black-orchid.png");
+}
