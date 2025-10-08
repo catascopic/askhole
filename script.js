@@ -1,6 +1,7 @@
 'use strict';
 
 const DECK = document.getElementById('deck');
+const DECK_MESSAGE = document.getElementById('deck-text');
 const CONTAINER = document.getElementById('cards');
 
 function shuffle(array) {
@@ -18,7 +19,7 @@ shuffle(questions);
 let draggingCard = null;
 
 function updateDeck() {
-	DECK.innerHTML = `Cards: ${questions.length}`;
+	DECK_MESSAGE.innerHTML = `Cards: ${questions.length}`;
 }
 
 updateDeck();
@@ -62,7 +63,7 @@ function draw() {
 
 function deckAccept(e) {
 	e.preventDefault();
-	DECK.innerHTML = '↪ Shuffle';
+	DECK_MESSAGE.innerHTML = '↪ Shuffle';
 }
 
 function deckCancel() {

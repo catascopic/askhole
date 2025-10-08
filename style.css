@@ -15,8 +15,9 @@
 }
 
 .deck {
-	display: inline-block;
-	background-color: crimson;
+	display: inline-flex;
+	background-color: black;
+	flex-direction: column;
 	color: white;
 	font-family: sans-serif;
 	font-size: 20pt;
